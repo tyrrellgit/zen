@@ -1,0 +1,5 @@
+streamlit
+skfolio
+plotly
+openbb
+pandas
