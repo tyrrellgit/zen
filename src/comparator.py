@@ -18,13 +18,13 @@ from skfolio.metrics import make_scorer
 from skfolio.preprocessing import prices_to_returns
 
 class Comparator:
-    def __init__(self, prices, models, log_returns=False, test_size=0.2):
+    def __init__(self, prices, models, log_returns=False, test_size=0.5):
 
         self.prices = prices
         self.X = prices_to_returns(prices, log_returns=log_returns)
         self.X_train, self.X_test = train_test_split(self.X, test_size=test_size, shuffle=False)
 
-        self.cv = WalkForward(train_size=252, test_size=60)
+        self.cv = WalkForward(train_size=252, test_size=20)
 
         self.searchers = []
         for model in models:
@@ -56,7 +56,6 @@ class Comparator:
         self.population = Population([])
         self.best_models = []
         
-        best_preds = []
         for searcher in self.searchers:
             searcher.fit(self.X_train)
             model = searcher.best_estimator_

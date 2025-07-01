@@ -1,7 +1,8 @@
-import streamlit as st
-
+import datetime
 from openbb import obb
 import pandas as pd
+
+import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -46,9 +47,9 @@ st.markdown(
 )
 
 # User inputs for tickers and date range
-tickers = st.text_input("Enter tickers separated by commas", "AAPL, AMZN, MSFT,  GOOGL, BABA, NVDA, TSLA")
-start_date = st.date_input("Start Date", value=pd.to_datetime("2015-01-01"))
-end_date = st.date_input("End Date", value=pd.to_datetime("2025-01-01"))
+tickers = st.text_input("Enter tickers separated by commas", "AAPL, AMZN, MSFT, GOOGL, NVDA, PLTR, META")
+start_date = st.date_input("Start Date", value=pd.to_datetime("2021-01-01"))
+end_date = st.date_input("End Date", value=datetime.date.today())
 
 if st.button("Run"):
     # Convert tickers to a list
